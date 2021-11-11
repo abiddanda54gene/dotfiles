@@ -36,10 +36,3 @@ alias zlncnt=zlncntfn
 alias zpeek=zpeekfn
 alias zcat='unpigz -c'
 alias untar='tar -xvf'
-
-# - Java Aliases - #
-export JAVA_8_HOME=$(/usr/libexec/java_home -v1.8)
-export JAVA_11_HOME=$(/usr/libexec/java_home -v11)
-
-alias java8='export JAVA_HOME=$JAVA_8_HOME'
-alias java11='export JAVA_HOME=$JAVA_11_HOME'
