@@ -2,7 +2,7 @@
 \documentclass[11pt]{article}
 
 
-\usepackage{}
+\usepackage{amssymb, amsmath, lineno}
 \usepackage{float, graphicx}
 \usepackage[margin=0.5in]{geometry}
 \title{TEST}
