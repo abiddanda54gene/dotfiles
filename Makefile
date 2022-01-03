@@ -10,6 +10,7 @@ link:
 	@ln -f .bash_functions ~/.bash_functions
 	@ln -f .bash_aliases ~/.bash_aliases
 	@ln -f .vimrc ~/.vimrc
+	@ln -f .textemplate ~/.textemplate
 	@echo "Successfully linked dot-files!"
 
 # Removes links for dot-files from home
@@ -19,6 +20,7 @@ unlink:
 	@unlink ~/.bash_functions
 	@unlink ~/.bash_aliases
 	@unlink ~/.vimrc
+	@unlink ~/.textemplate
 	@echo "Successfully unlinked dot-files!"
 
 source:
