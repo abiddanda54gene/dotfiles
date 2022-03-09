@@ -2,31 +2,10 @@
 # --- Utility Functions -------------------- #
 #---------------------------------------------#
 
-#Usage: ps2tiff <.ps file> <output file> <resolution>
-ps2tiff() {
- gs -sDEVICE=tiff64nc -o $2 -r$3 $1
-}
-
-#Usage: <merged.pdf> <v1.pdf v2.pdf ...>
-cpdf() { 
-  gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile="$1" "${@:2}"
-}
-
 #Usage: targz <directory>
 targz(){
 	dir=${1%/}
-	tar -cvf - $dir | pigz -9 > ${dir}.tar.gz
-}
-
-# Usage: mawk_stats <filename> <column number>
-# TODO : Median and Quartiles...
-# TODO : Hoare's Select Algorithm in mawk for median :)
-mawk_stats(){
-	file=$1
-	col=$2
-	mawk -v c=$col '{if(min==""){min=max=$c};
-		if($c > max){max=$c}; if($c < min){min=$c}; sum+=$c; n+=1}
-		END {printf "Min\tMax\tMean\tN\n%.3f\t%.3f\t%.3f\t%.3f\n",min, max ,sum/n, n}' $file
+	tar -cvf - $dir | gzip -9 > ${dir}.tar.gz
 }
 
 # linecnt group of files in order (ie. by chromosome)
@@ -73,13 +52,6 @@ zpeekfn(){
 	zip2stream $1 | head -n $2
 }
 
-# --- Compression Routines --- #
-
-jpgzip(){
-	RATIO=$1; jpegoptim -m${RATIO} *.jpg
-}
-
-
 # --- Code Setup --- #
 
 # Sets up a canonical python script from a template
@@ -90,13 +62,6 @@ setuppy(){
 # Sets up a generic latex article template + makefile
 setuptex(){
 	cp ~/.textemplate $1
-}
-
-# Sets up a project directory 
-setupproject(){
-	url='git@github.com:aabiddanda/project_template.git'
-  git clone -q ${url} $1
-  rm -rf ./$1/.git/
 }
 
 # Print Kth column of a stream
